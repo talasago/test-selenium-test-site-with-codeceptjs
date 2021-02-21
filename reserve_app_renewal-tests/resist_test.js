@@ -14,7 +14,7 @@ Before(async ({ I, TopPage }) => {
     TopPage.goto()
 });
 
-Scenario('invalid resisted reserve_date', ({ I, TopPage }) => {
+Scenario('invalid resisted reserve_date', ({ I, TopPage, ErrorPage }) => {
     TopPage.inputReserveForm(
       moment().format("YYYY/MM/DD"),
       fixture.invalidData[0].reserveTerm,
@@ -24,6 +24,9 @@ Scenario('invalid resisted reserve_date', ({ I, TopPage }) => {
       fixture.invalidData[0].planBFlg,
       fixture.invalidData[0].guestName
     )
+    TopPage.enterAgreeAndGotoNext()
+    ErrorPage.checkError()
+    TopPage.checkHeader()
 });
 
 Scenario('invalid resisted guest_name', ({ I, TopPage }) => {

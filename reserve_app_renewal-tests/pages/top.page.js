@@ -5,6 +5,7 @@ const I = actor();
 module.exports = {
 
     // locators
+    h1: "div.container > h1",
     input_fields: {
         reserveDate: "#datePick",
         guestName: "#guestname"
@@ -62,10 +63,14 @@ module.exports = {
             I.uncheckOption(this.check_fields.planBFlg)
         }
         I.fillField(this.input_fields.guestName, guestName)
-
     },
 
     enterAgreeAndGotoNext() {
-        I.click(this.btn_fields.breakfastFlg)
+        I.click(this.btn_fields.agreeAndGotoNext)
+    },
+
+    checkHeader() {
+        I.waitForVisible('.container')
+        I.see('予約フォーム', h1)
     }
 }

@@ -22,7 +22,8 @@ exports.config = {
 
   },
   include: {
-    TopPage: './reserve_app_renewal-tests/pages/top.page.js'
+    TopPage: './reserve_app_renewal-tests/pages/top.page.js',
+    ErrorPage: './reserve_app_renewal-tests/pages/error.page.js'
   },
   bootstrap: null,
   mocha: {},
@@ -39,5 +40,5 @@ exports.config = {
     screenshotOnFail: {
       enabled: true
     }
-  }
+  },
 }

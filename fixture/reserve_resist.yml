@@ -26,4 +26,4 @@ invalidData:
     breakfastFlg:  "3"
     planAFlg:      "1"
     planBFlg:      "1"
-    guestName:
+    guestName:     ""
