@@ -10,7 +10,7 @@ exports.config = {
   helpers: {
     Puppeteer: {
       url: 'http://example.selenium.jp/reserveApp_Renewal/',
-      show: true,
+      show: false, //ヘッドレスの制御
       windowSize: '1200x900',
       waitForTimeout: 5000,
       waitForNavigation: 'networkidle0',//少なくとも500msの間、ネットワーク接続が0以下になったときに、ナビゲーションが終了したと見なします。

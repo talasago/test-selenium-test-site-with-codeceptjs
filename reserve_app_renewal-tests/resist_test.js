@@ -5,7 +5,7 @@ const path = require('path');
 const moment = require("moment");
 
 //TODO:PATHをパラメタ化
-const fixtureYmlData = fs.readFileSync(path.join(__dirname, "../fixture/reserve_resist.yml"), 'utf8');
+const fixtureYmlData = fs.readFileSync(path.join(__dirname, "fixture/reserve_resist.yml"), 'utf8');
 const fixture = yaml.load(fixtureYmlData);
 
 Feature('reserve resist test');
