@@ -29,7 +29,7 @@ Scenario('invalid resisted reserve_date', ({ I, TopPage, ErrorPage }) => {
     TopPage.checkHeader()
 });
 
-Scenario('invalid resisted guest_name', ({ I, TopPage }) => {
+Scenario('invalid resisted guest_name', ({ I, TopPage, ErrorPage }) => {
     TopPage.inputReserveForm(
       moment().add('days', 1).format("YYYY/MM/DD"),
       fixture.invalidData[1].reserveTerm,
@@ -39,6 +39,9 @@ Scenario('invalid resisted guest_name', ({ I, TopPage }) => {
       fixture.invalidData[1].planBFlg,
       fixture.invalidData[1].guestName
     )
+    TopPage.enterAgreeAndGotoNext()
+    ErrorPage.checkError('名前が指定されていません')
+    TopPage.checkHeader()
 });
 
 Scenario('valid resisted', ({ I, TopPage }) => {
