@@ -44,7 +44,7 @@ module.exports = {
       guestName     //名前
       ) {
         I.fillField(this.input_fields.reserveDate, reserveDate)
-        //I.selectOption(this.select_fields.reserveTerm, reserveTerm)
+        I.selectOption(this.select_fields.reserveTerm, reserveTerm)
         I.selectOption(this.select_fields.peopleCount, peopleCount)
         if (breakfastFlg === "0") {
             I.checkOption(this.radio_fields.breakfastOnFlg)

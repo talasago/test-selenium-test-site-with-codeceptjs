@@ -1,0 +1,29 @@
+#reserveDateはJS側で処理日に応じて値を指定する
+validData:
+  - reserveDate:   $tommorow
+    reserveTerm:   2
+    peopleCount:   4
+    breakfastFlg:  1
+    planAFlg:      1
+    planBFlg:      0
+    guestName:     guest1
+
+
+invalidData:
+  # 日付無効クラス
+  - reserveDate:   $today
+    reserveTerm:   "2"
+    peopleCount:   "3"
+    breakfastFlg:  "1"
+    planAFlg:      "0"
+    planBFlg:      "1"
+    guestName:     "guest1"
+
+  # 名前無効クラス
+  - reserveDate:   $tommorow
+    reserveTerm:   2
+    peopleCount:   4
+    breakfastFlg:  3
+    planAFlg:      1
+    planBFlg:      1
+    guestName:
