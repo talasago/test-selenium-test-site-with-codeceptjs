@@ -2,6 +2,8 @@
 const yaml  = require("js-yaml");
 const fs = require('fs');
 const path = require('path');
+const moment = require("moment");
+
 //TODO:PATHをパラメタ化
 const fixtureYmlData = fs.readFileSync(path.join(__dirname, "../fixture/reserve_resist.yml"), 'utf8');
 const fixture = yaml.load(fixtureYmlData);
@@ -14,14 +16,25 @@ Before(async ({ I, TopPage }) => {
 
 Scenario('invalid resisted reserve_date', ({ I, TopPage }) => {
     TopPage.inputReserveForm(
-      //TODO:日付を自動変換
-      '2021/2/1',
+      moment().format("YYYY/MM/DD"),
       fixture.invalidData[0].reserveTerm,
       fixture.invalidData[0].peopleCount,
       fixture.invalidData[0].breakfastFlg,
       fixture.invalidData[0].planAFlg,
       fixture.invalidData[0].planBFlg,
       fixture.invalidData[0].guestName
+    )
+});
+
+Scenario('invalid resisted guest_name', ({ I, TopPage }) => {
+    TopPage.inputReserveForm(
+      moment().add('days', 1).format("YYYY/MM/DD"),
+      fixture.invalidData[1].reserveTerm,
+      fixture.invalidData[1].peopleCount,
+      fixture.invalidData[1].breakfastFlg,
+      fixture.invalidData[1].planAFlg,
+      fixture.invalidData[1].planBFlg,
+      fixture.invalidData[1].guestName
     )
 });
 
