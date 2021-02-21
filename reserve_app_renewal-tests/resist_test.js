@@ -25,7 +25,7 @@ Scenario('invalid resisted reserve_date', ({ I, TopPage, ErrorPage }) => {
       fixture.invalidData[0].guestName
     )
     TopPage.enterAgreeAndGotoNext()
-    ErrorPage.checkError()
+    ErrorPage.checkError('翌日以降の日付を指定')
     TopPage.checkHeader()
 });
 

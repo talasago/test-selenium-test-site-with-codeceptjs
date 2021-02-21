@@ -45,6 +45,7 @@ module.exports = {
       guestName     //名前
       ) {
         I.fillField(this.input_fields.reserveDate, reserveDate)
+        I.pressKey('Escape') //datepickを閉じないと朝食選択時にdatepickが反応してしまう
         I.selectOption(this.select_fields.reserveTerm, reserveTerm)
         I.selectOption(this.select_fields.peopleCount, peopleCount)
         if (breakfastFlg === "0") {

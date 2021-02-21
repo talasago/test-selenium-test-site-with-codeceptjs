@@ -6,18 +6,18 @@ validData:
     breakfastFlg:  "1"
     planAFlg:      "1"
     planBFlg:      "0"
-    guestName:     guest1
+    guestName:     "guest1"
 
 
 invalidData:
   # 日付無効クラス
   - reserveDate:   $today
     reserveTerm:   "2"
-    peopleCount:   "3"
+    peopleCount:   "7"
     breakfastFlg:  "1"
     planAFlg:      "0"
     planBFlg:      "1"
-    guestName:     "guest1"
+    guestName:     "guest_today"
 
   # 名前無効クラス
   - reserveDate:   $tommorow
