@@ -16,6 +16,7 @@ Before(async ({ I, TopPage }) => {
 
 Scenario('invalid resisted reserve_date', ({ I, TopPage, ErrorPage }) => {
     TopPage.inputReserveForm(
+      //TODO:fixtureに日付データを記載する方法
       moment().format("YYYY/MM/DD"),
       fixture.invalidData[0].reserveTerm,
       fixture.invalidData[0].peopleCount,
@@ -45,6 +46,11 @@ Scenario('invalid resisted guest_name', ({ I, TopPage, ErrorPage }) => {
 });
 
 Scenario('valid resisted', ({ I, TopPage }) => {
+    //テスト観点合計額が一致すること
+    // fixtureにデータ駆動形で定義。計算メソッドは作らない。
+    // 土日含む場合と含まない場合
+    // 朝食ありなし
+    // 観光プランありなし
     TopPage.inputReserveForm(
         '2021/3/1',
         "3",
