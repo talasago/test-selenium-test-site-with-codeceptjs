@@ -1,12 +1,25 @@
-#reserveDateはJS側で処理日に応じて値を指定する
+#reserveDateはJS側で処理日に応じて値を指定する。
+# TODO:helperに登録するか検討
+# TODO:変数として参照できるようにしたい、値を使いまわしたい
 validData:
-  - reserveDate:   $$tommorow
-    reserveTerm:   "2"
-    peopleCount:   "4"
-    breakfastFlg:  "1"
-    planAFlg:      "1"
-    planBFlg:      "0"
-    guestName:     "guest1"
+  - inputData:
+      reserveDate:   $$tommorow
+      reserveTerm:   "2"
+      peopleCount:   "4"
+      breakfastFlg:  "1"
+      planAFlg:      "1"
+      planBFlg:      "0"
+      guestName:     "guest1"
+    checkData:
+      reserveDateFrom:    "2021年2月25日"
+      reserveDateTo:      "2021年2月27日"
+      totalPrice:         ""
+      reserveTerm:        "2"
+      PeopleCount:        "4"
+      breakfast:          "なし"
+      plan_a_order:       null
+      plan_b_order:       "お得な観光プラン"
+      guestName:          "guest1"
 
 
 invalidData:

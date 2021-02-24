@@ -22,11 +22,37 @@ module.exports = {
     },
 
     // 予約情報を検証する
-    checkContent(errorMassage) {
-        //TODO:実装する
+    checkReserveDetail(
+      reserveDateFrom,   //宿泊日
+      reserveDateTo,
+      reserveTerm,
+      PeopleCount,
+      breakfast,
+      plan_a_order,
+      plan_b_order,
+      guestName
+    ) {
         I.waitForVisible('.container')
-        I.see('予約エラー', this.h1)
-        I.see(errorMassage, this.errorMassage) //エラーメッセージが存在するくらいまでの検証
+        I.see('予約内容', this.h1)
+        //I.see('', this.totalPrice)
+        //#TODO:土日料金
+        I.see(reserveDateFrom, this.reserveDateFrom)
+        I.see(reserveDateTo, this.reserveDateTo)
+        I.see(reserveTerm, this.reserveTerm)
+        I.see(PeopleCount, this.reservePeopleCount)
+        //朝食のラジオボタン
+        I.see(breakfast, this.bf_order)
+        if (plan_a_order === null) {
+            I.dontSeeElemetn(this.plan_a_order)
+        } else {
+            I.see(plan_a_order, this.plan_a_order)
+        }
+        if (plan_b_order === null) {
+            I.see(this.plan_b_order)
+        } else {
+            I.see(plan_b_order, this.plan_b_order)
+        }
+        I.see(guestName, this.guestName)
     },
 
     //topページへ戻る

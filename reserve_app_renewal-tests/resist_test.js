@@ -45,19 +45,32 @@ Scenario('invalid resisted guest_name', ({ I, TopPage, ErrorPage }) => {
     TopPage.checkHeader()
 });
 
-Scenario('valid resisted', ({ I, TopPage }) => {
+Scenario('valid resisted', ({ I, TopPage, ReserveCheckPage }) => {
     //テスト観点合計額が一致すること
     // fixtureにデータ駆動形で定義。計算メソッドは作らない。
     // 土日含む場合と含まない場合
     // 朝食ありなし
     // 観光プランありなし
+    //DataTableで実装する
     TopPage.inputReserveForm(
-        '2021/3/1',
-        "3",
-        "2",
-        "1",
-        "0",
-        "1",
-        "guest_name1"
+      moment().add('days', 1).format("YYYY/MM/DD"),
+      fixture.validData[0].inputData.reserveTerm,
+      fixture.validData[0].inputData.peopleCount,
+      fixture.validData[0].inputData.breakfastFlg,
+      fixture.validData[0].inputData.planAFlg,
+      fixture.validData[0].inputData.planBFlg,
+      fixture.validData[0].inputData.guestName
+    )
+    TopPage.enterAgreeAndGotoNext()
+
+    ReserveCheckPage.checkReserveDetail(
+        fixture.validData[0].checkData.reserveDateFrom,
+        fixture.validData[0].checkData.reserveDateTo,
+        fixture.validData[0].checkData.reserveTerm,
+        fixture.validData[0].checkData.PeopleCount,
+        fixture.validData[0].checkData.breakfast,
+        fixture.validData[0].checkData.plan_a_order,
+        fixture.validData[0].checkData.plan_b_order,
+        fixture.validData[0].checkData.guestName
     )
 });
