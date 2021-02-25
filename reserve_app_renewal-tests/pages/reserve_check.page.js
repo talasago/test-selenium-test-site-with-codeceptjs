@@ -25,6 +25,7 @@ module.exports = {
     checkReserveDetail(
       reserveDateFrom,   //宿泊日
       reserveDateTo,
+      totalPrice,
       reserveTerm,
       PeopleCount,
       breakfast,
@@ -34,8 +35,7 @@ module.exports = {
     ) {
         I.waitForVisible('.container')
         I.see('予約内容', this.h1)
-        //I.see('', this.totalPrice)
-        //#TODO:土日料金
+        I.see(totalPrice, this.totalPrice)
         I.see(reserveDateFrom, this.reserveDateFrom)
         I.see(reserveDateTo, this.reserveDateTo)
         I.see(reserveTerm, this.reserveTerm)

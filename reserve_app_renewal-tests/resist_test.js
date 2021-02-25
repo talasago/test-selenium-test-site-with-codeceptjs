@@ -53,7 +53,7 @@ Scenario('valid resisted', ({ I, TopPage, ReserveCheckPage }) => {
     // 観光プランありなし
     //DataTableで実装する
     TopPage.inputReserveForm(
-      moment().add('days', 1).format("YYYY/MM/DD"),
+      fixture.validData[0].inputData.reserveDate,
       fixture.validData[0].inputData.reserveTerm,
       fixture.validData[0].inputData.peopleCount,
       fixture.validData[0].inputData.breakfastFlg,
@@ -66,6 +66,7 @@ Scenario('valid resisted', ({ I, TopPage, ReserveCheckPage }) => {
     ReserveCheckPage.checkReserveDetail(
         fixture.validData[0].checkData.reserveDateFrom,
         fixture.validData[0].checkData.reserveDateTo,
+        fixture.validData[0].checkData.totalPrice,
         fixture.validData[0].checkData.reserveTerm,
         fixture.validData[0].checkData.PeopleCount,
         fixture.validData[0].checkData.breakfast,

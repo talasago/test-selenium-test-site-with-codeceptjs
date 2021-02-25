@@ -1,9 +1,8 @@
-#reserveDateはJS側で処理日に応じて値を指定する。
-# TODO:helperに登録するか検討
 # TODO:変数として参照できるようにしたい、値を使いまわしたい
+# TODO:テストケース名があっても良いかも
 validData:
   - inputData:
-      reserveDate:   $$tommorow
+      reserveDate:   "2021/04/01"
       reserveTerm:   "2"
       peopleCount:   "4"
       breakfastFlg:  "1"
@@ -11,9 +10,9 @@ validData:
       planBFlg:      "0"
       guestName:     "guest1"
     checkData:
-      reserveDateFrom:    "2021年2月25日"
-      reserveDateTo:      "2021年2月27日"
-      totalPrice:         ""
+      reserveDateFrom:    "2021年4月1日"
+      reserveDateTo:      "2021年4月3日"
+      totalPrice:         "60000"
       reserveTerm:        "2"
       PeopleCount:        "4"
       breakfast:          "なし"
