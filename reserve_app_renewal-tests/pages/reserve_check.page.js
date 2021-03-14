@@ -23,7 +23,7 @@ module.exports = {
 
     // 予約情報を検証する
     checkReserveDetail(
-      reserveDateFrom,   //宿泊日
+      reserveDateFrom,
       reserveDateTo,
       totalPrice,
       reserveTerm,

@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const moment = require("moment");
 
-//TODO:PATHをパラメタ化
 const fixtureYmlData = fs.readFileSync(path.join(__dirname, "fixture/reserve_resist.yml"), 'utf8');
 const fixture = yaml.load(fixtureYmlData);
 
@@ -45,33 +44,37 @@ Scenario('invalid resisted guest_name', ({ I, TopPage, ErrorPage }) => {
     TopPage.checkHeader()
 });
 
-Scenario('valid resisted', ({ I, TopPage, ReserveCheckPage }) => {
-    //テスト観点合計額が一致すること
-    // fixtureにデータ駆動形で定義。計算メソッドは作らない。
-    // 土日含む場合と含まない場合
-    // 朝食ありなし
-    // 観光プランありなし
-    //DataTableで実装する
-    TopPage.inputReserveForm(
-      fixture.validData[0].inputData.reserveDate,
-      fixture.validData[0].inputData.reserveTerm,
-      fixture.validData[0].inputData.peopleCount,
-      fixture.validData[0].inputData.breakfastFlg,
-      fixture.validData[0].inputData.planAFlg,
-      fixture.validData[0].inputData.planBFlg,
-      fixture.validData[0].inputData.guestName
-    )
-    TopPage.enterAgreeAndGotoNext()
+Scenario('valid resisted', ({ I, TopPage, ReserveCheckPage, FinalConfirmPage }) => {
+    //let fixtureDataTable = new DataTable(fixture.);
+    for (let idx in fixture.validData) {
+        //TopPage.goto() //ループするならどこかでトップページに行ってデータをリセットする必要がある。
+        // beforeメソッド意味ない？Datatableでも同じ問題が起きる。だからgoto使っていいんでね。
+        // 回避方法はtopページまで戻ることをテストする。
+        TopPage.inputReserveForm(
+          fixture.validData[idx].inputData.reserveDate,
+          fixture.validData[idx].inputData.reserveTerm,
+          fixture.validData[idx].inputData.peopleCount,
+          fixture.validData[idx].inputData.breakfastFlg,
+          fixture.validData[idx].inputData.planAFlg,
+          fixture.validData[idx].inputData.planBFlg,
+          fixture.validData[idx].inputData.guestName
+        )
+        TopPage.enterAgreeAndGotoNext()
 
-    ReserveCheckPage.checkReserveDetail(
-        fixture.validData[0].checkData.reserveDateFrom,
-        fixture.validData[0].checkData.reserveDateTo,
-        fixture.validData[0].checkData.totalPrice,
-        fixture.validData[0].checkData.reserveTerm,
-        fixture.validData[0].checkData.PeopleCount,
-        fixture.validData[0].checkData.breakfast,
-        fixture.validData[0].checkData.plan_a_order,
-        fixture.validData[0].checkData.plan_b_order,
-        fixture.validData[0].checkData.guestName
-    )
+        ReserveCheckPage.checkReserveDetail(
+            fixture.validData[idx].checkData.reserveDateFrom,
+            fixture.validData[idx].checkData.reserveDateTo,
+            fixture.validData[idx].checkData.totalPrice,
+            fixture.validData[idx].checkData.reserveTerm,
+            fixture.validData[idx].checkData.PeopleCount,
+            fixture.validData[idx].checkData.breakfast,
+            fixture.validData[idx].checkData.plan_a_order,
+            fixture.validData[idx].checkData.plan_b_order,
+            fixture.validData[idx].checkData.guestName
+        )
+        ReserveCheckPage.goToCommit()
+
+        FinalConfirmPage.checkReserveFinalCommit()
+        TopPage.goto()
+    }
 });

@@ -1,5 +1,5 @@
 # TODO:変数として参照できるようにしたい、値を使いまわしたい
-# TODO:テストケース名があっても良いかも
+# MEMO:テストケース名があっても良いかも
 validData:
   - inputData:
       reserveDate:   "2021/04/01"
@@ -19,6 +19,24 @@ validData:
       plan_a_order:       null
       plan_b_order:       "お得な観光プラン"
       guestName:          "guest1"
+  - inputData:
+      reserveDate:   "2021/04/17"
+      reserveTerm:   "3"
+      peopleCount:   "1"
+      breakfastFlg:  "0"
+      planAFlg:      "0"
+      planBFlg:      "0"
+      guestName:     "guest2"
+    checkData:
+      reserveDateFrom:    "2021年4月17日"
+      reserveDateTo:      "2021年4月20日"
+      totalPrice:         "29500"
+      reserveTerm:        "3"
+      PeopleCount:        "1"
+      breakfast:          "あり"
+      plan_a_order:       "昼からチェックインプラン"
+      plan_b_order:       "お得な観光プラン"
+      guestName:          "guest2"
 
 
 invalidData:

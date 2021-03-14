@@ -24,7 +24,8 @@ exports.config = {
   include: {
     TopPage: './reserve_app_renewal-tests/pages/top.page.js',
     ErrorPage: './reserve_app_renewal-tests/pages/error.page.js',
-    ReserveCheckPage: './reserve_app_renewal-tests/pages/reserve_check.page.js'
+    ReserveCheckPage: './reserve_app_renewal-tests/pages/reserve_check.page.js',
+    FinalConfirmPage: './reserve_app_renewal-tests/pages/final_confirm.page.js'
   },
   bootstrap: null,
   mocha: {},
