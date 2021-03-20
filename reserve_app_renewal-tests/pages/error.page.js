@@ -1,9 +1,6 @@
-const assert = require('assert');
-
 const I = actor();
 
 module.exports = {
-
     // locators
     h1: "div.container > h1",
     errorMassage: "#errorcheck_result",

@@ -63,5 +63,4 @@ module.exports = {
     goToCommit() {
         I.click(this.btn_fields.commit)
     }
-
 }

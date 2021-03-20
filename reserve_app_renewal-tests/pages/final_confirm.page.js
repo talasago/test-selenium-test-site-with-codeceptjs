@@ -1,7 +1,6 @@
 const I = actor();
 
 module.exports = {
-
     // locators
     h1: "div.container > h1",
     btnReturn: "#returnto_checkInfo",

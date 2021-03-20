@@ -1,9 +1,9 @@
-//const { dataTable } = require("codeceptjs");
 const yaml  = require("js-yaml");
 const fs = require('fs');
 const path = require('path');
 const moment = require("moment");
 
+//fixtureデータ
 const fixtureYmlData = fs.readFileSync(path.join(__dirname, "fixture/reserve_resist.yml"), 'utf8');
 const fixture = yaml.load(fixtureYmlData);
 
@@ -45,11 +45,7 @@ Scenario('invalid resisted guest_name', ({ I, TopPage, ErrorPage }) => {
 });
 
 Scenario('valid resisted', ({ I, TopPage, ReserveCheckPage, FinalConfirmPage }) => {
-    //let fixtureDataTable = new DataTable(fixture.);
     for (let idx in fixture.validData) {
-        //TopPage.goto() //ループするならどこかでトップページに行ってデータをリセットする必要がある。
-        // beforeメソッド意味ない？Datatableでも同じ問題が起きる。だからgoto使っていいんでね。
-        // 回避方法はtopページまで戻ることをテストする。
         TopPage.inputReserveForm(
           fixture.validData[idx].inputData.reserveDate,
           fixture.validData[idx].inputData.reserveTerm,
