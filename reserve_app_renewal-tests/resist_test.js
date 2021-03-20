@@ -1,4 +1,4 @@
-const yaml  = require("js-yaml");
+const yaml = require("js-yaml");
 const fs = require('fs');
 const path = require('path');
 const moment = require("moment");
@@ -13,38 +13,26 @@ Before(async ({ I, TopPage }) => {
     TopPage.goto()
 });
 
-Scenario('invalid resisted reserve_date', ({ I, TopPage, ErrorPage }) => {
-    TopPage.inputReserveForm(
-      //TODO:fixtureに日付データを記載する方法
-      moment().format("YYYY/MM/DD"),
-      fixture.invalidData[0].reserveTerm,
-      fixture.invalidData[0].peopleCount,
-      fixture.invalidData[0].breakfastFlg,
-      fixture.invalidData[0].planAFlg,
-      fixture.invalidData[0].planBFlg,
-      fixture.invalidData[0].guestName
-    )
-    TopPage.enterAgreeAndGotoNext()
-    ErrorPage.checkError('翌日以降の日付を指定')
-    TopPage.checkHeader()
+Scenario('invalid resist ', ({ I, TopPage, ErrorPage }) => {
+    for (let idx in fixture.invalidData) {
+        TopPage.inputReserveForm(
+            //FIXME:fixtureに日付データを記載する方法
+            eval(fixture.invalidData[idx].reserveDate),
+            fixture.invalidData[idx].reserveTerm,
+            fixture.invalidData[idx].peopleCount,
+            fixture.invalidData[idx].breakfastFlg,
+            fixture.invalidData[idx].planAFlg,
+            fixture.invalidData[idx].planBFlg,
+            fixture.invalidData[idx].guestName
+        )
+        TopPage.enterAgreeAndGotoNext()
+        ErrorPage.checkError(fixture.invalidData[idx].expectError)
+        ErrorPage.returnTop()
+        TopPage.checkHeader()
+    }
 });
 
-Scenario('invalid resisted guest_name', ({ I, TopPage, ErrorPage }) => {
-    TopPage.inputReserveForm(
-      moment().add('days', 1).format("YYYY/MM/DD"),
-      fixture.invalidData[1].reserveTerm,
-      fixture.invalidData[1].peopleCount,
-      fixture.invalidData[1].breakfastFlg,
-      fixture.invalidData[1].planAFlg,
-      fixture.invalidData[1].planBFlg,
-      fixture.invalidData[1].guestName
-    )
-    TopPage.enterAgreeAndGotoNext()
-    ErrorPage.checkError('名前が指定されていません')
-    TopPage.checkHeader()
-});
-
-Scenario('valid resisted', ({ I, TopPage, ReserveCheckPage, FinalConfirmPage }) => {
+Scenario('valid resist', ({ I, TopPage, ReserveCheckPage, FinalConfirmPage }) => {
     for (let idx in fixture.validData) {
         TopPage.inputReserveForm(
           fixture.validData[idx].inputData.reserveDate,

@@ -39,19 +39,20 @@ validData:
 
 invalidData:
   # 日付無効クラス
-  - reserveDate:   $$today
+  - reserveDate:   'moment().format("YYYY/MM/DD")'
     reserveTerm:   "2"
     peopleCount:   "7"
     breakfastFlg:  "1"
     planAFlg:      "0"
     planBFlg:      "1"
     guestName:     "guest_today"
-
+    expectError:    "翌日以降の日付を指定"
   # 名前無効クラス
-  - reserveDate:   $$tommorow
+  - reserveDate:   'moment().add("days", 1).format("YYYY/MM/DD")'
     reserveTerm:   "2"
     peopleCount:   "4"
     breakfastFlg:  "3"
     planAFlg:      "1"
     planBFlg:      "1"
     guestName:     ""
+    expectError:    "名前が指定されていません"
