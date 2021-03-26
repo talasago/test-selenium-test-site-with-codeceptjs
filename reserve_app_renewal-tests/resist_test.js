@@ -13,10 +13,10 @@ Before(async ({ I, TopPage }) => {
     TopPage.goto()
 });
 
-Scenario('invalid resist ', ({ I, TopPage, ErrorPage }) => {
+Scenario('invalid resist', ({ I, TopPage, ErrorPage }) => {
     for (let idx in fixture.invalidData) {
         TopPage.inputReserveForm(
-            //FIXME:fixtureに日付データを記載する方法
+            //FIXME:eval()を使わずにfixtureに日付データを記載する方法
             eval(fixture.invalidData[idx].reserveDate),
             fixture.invalidData[idx].reserveTerm,
             fixture.invalidData[idx].peopleCount,
@@ -26,8 +26,10 @@ Scenario('invalid resist ', ({ I, TopPage, ErrorPage }) => {
             fixture.invalidData[idx].guestName
         )
         TopPage.enterAgreeAndGotoNext()
+
         ErrorPage.checkError(fixture.invalidData[idx].expectError)
         ErrorPage.returnTop()
+
         TopPage.checkHeader()
     }
 });

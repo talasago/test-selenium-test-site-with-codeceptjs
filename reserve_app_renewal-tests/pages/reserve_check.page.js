@@ -43,7 +43,7 @@ module.exports = {
         //朝食のラジオボタン
         I.see(breakfast, this.bf_order)
         if (plan_a_order === null) {
-            I.dontSeeElemetn(this.plan_a_order)
+            I.dontSeeElement(this.plan_a_order)
         } else {
             I.see(plan_a_order, this.plan_a_order)
         }
